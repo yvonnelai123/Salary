@@ -46,6 +46,41 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST')
 
 	</head>
 	<body>
-	<? include("header.php"); ?>
+		<? include("header.php"); ?>
+		<div class="contain">
+		<div class="contain panel panel-default">
+			<div class="panel-heading">
+				Upload File
+			</div>
+			<div class="panel-body">
+				<form action="upload.php" enctype="multipart/form-data" method="post">
+				<div class="dropdown">
+					Employee Account : <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					Employee 
+						<span class="caret">
+						</span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li>
+							<a href="#">
+								Action
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								Another action
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="form-group">
+					上傳薪資表 : <input id="file" name="file" type="file">
+				</div>
+				<input id="submit" name="submit" type="submit" value="開始上傳" class="btn btn-default">
+			</form>
+			</div>
+		</div>
+			
+		</div>
 	</body>
 </html>

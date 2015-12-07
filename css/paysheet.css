@@ -1,0 +1,27 @@
+body
+{
+	font-family: "微軟正黑體",Tahoma, Helvetica, Arial, sans-serif;
+	margin-top: 0px;
+	margin-left: 0px;
+	width: 100%;
+	background-color: #fdfdfd;
+
+}
+a
+{
+	text-decoration: none;
+	color: black;
+}
+a:hover
+{
+	text-decoration: none;
+	color: black;
+}
+.contain
+{
+	min-height: 300px;
+	width: 300px;
+	overflow: auto;
+	margin: 0px auto;
+	margin-top: 50px;
+}
