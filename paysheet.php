@@ -6,23 +6,26 @@ include('function/Mysql.php');
 include('function/Paysheet.php');
 $Paysheets = new Paysheet(new Mysql());
 
-if($_SESSION['Account'] == null)
-{
+if($_SESSION['Account'] == null){
 	header("Location:login.php");
 	die();
 }
-elseif($_SESSION['Account'] == 'admin'){
-	if($_SERVER['REQUEST_METHOD'] == 'POST'){
-		if($_FILES['file']['error'] > 0){
+elseif($_SESSION['Account'] == 'admin')
+{
+	if($_SERVER['REQUEST_METHOD'] == 'POST')
+	{
+		if($_FILES['file']['error'] > 0)
+		{
 			echo '<script>alert("檔案上傳失敗！");</script>';
 		}
-		elseif(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xlsx' && pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xls'){
+		elseif(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xlsx' && pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xls')
+		{
 			echo '<script>alert("檔案格式錯誤！");</script>';
 		}
 		else
 		{
-			$list = explode("-", $_POST['date']);
-			$date = $list[0].$list[1];
+			$list     = explode("-", $_POST['date']);
+			$date     = $list[0].$list[1];
 			$fileName = $_POST['account'].'-'.$_POST['date'].'.'.pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
 			move_uploaded_file($_FILES['file']['tmp_name'], 'file/'.$fileName);//複製檔案
 
@@ -59,32 +62,15 @@ else
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/paysheet.css" type="text/css">
-		
+
 
 	</head>
 	<body>
 		<?php include("header.php"); ?>
-<<<<<<< HEAD
-		<div class="contain">
-			<div class="contain panel panel-default">
-				<div class="panel-heading">
-					Upload File
-				</div>
-				<div class="panel-body">
-					<form action="upload.php" enctype="multipart/form-data" method="post">
-						<div class="form-box">
-							<div class="upload">Employee Account :</div>
-							<div class="dropdown-box">
-							<select class="form-control" name="account" required="">
-								<option value="N123456789">
-									N123456789
-								</option>
-=======
->>>>>>> origin/master
-
 		<div class="contain">
 			<?php
-			if($_SESSION['Account'] == 'admin'){
+			if($_SESSION['Account'] == 'admin')
+			{
 				include("uploadPaysheet.php");
 			}
 			else
