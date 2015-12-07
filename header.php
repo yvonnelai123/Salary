@@ -32,11 +32,6 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li>
-					<a href="paysheet.php">
-						My Salary
-					</a>
-				</li>
-				<li>
 					<a href="setting.php">
 						Setting
 					</a>

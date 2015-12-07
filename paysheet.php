@@ -1,25 +1,25 @@
 <?php
 @session_start();
 $err = "";
-if($_GET['Action'] == "Logout"){
-	session_destroy();
+if($_SESSION['Account'] == null){
+	header("Location:login.php");
+	die();
 }
-elseif($_SERVER['REQUEST_METHOD'] == 'POST')
+elseif($_SESSION['Account'] == 'admin')
 {
-
-	if($_POST['role'] == 'employee')
+	include('function/Mysql.php');
+	include('function/User.php');
+	if($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
-		include('function/Mysql.php');
-		include('function/User.php');
-		$Users = new User(new Mysql());
-		if($Users->Login($_POST['account'], $_POST['password']))
-		{
-			$_SESSION['Account'] = $_POST['account'];
-		}
-		else
-		$err = "帳號或密碼錯誤!";
+
+
 	}
 }
+else
+{
+
+}
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
@@ -48,39 +48,44 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST')
 	<body>
 		<? include("header.php"); ?>
 		<div class="contain">
-		<div class="contain panel panel-default">
-			<div class="panel-heading">
-				Upload File
-			</div>
-			<div class="panel-body">
-				<form action="upload.php" enctype="multipart/form-data" method="post">
-				<div class="dropdown">
-					Employee Account : <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					Employee 
-						<span class="caret">
-						</span>
-					</button>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li>
-							<a href="#">
-								Action
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								Another action
-							</a>
-						</li>
-					</ul>
+			<div class="contain panel panel-default">
+				<div class="panel-heading">
+					Upload File
 				</div>
-				<div class="form-group">
-					上傳薪資表 : <input id="file" name="file" type="file">
+				<div class="panel-body">
+					<form action="upload.php" enctype="multipart/form-data" method="post">
+						<div class="form-box">
+							<div class="upload">Employee Account :</div>
+							<div class="dropdown-box">
+							<select class="form-control" name="account" required="">
+								<option value="N123456789">
+									N123456789
+								</option>
+
+							</select>
+							</div>
+						</div>
+						<div class="form-box">
+							<div class="upload">Year & Month :</div>
+							<div class="date-box">
+							<input type="month" name="date" class="form-control" required=""/>
+							</div>
+						</div>
+						<div class="form-box">
+							<div class="upload">
+								上傳薪資表 :
+							</div>
+							<div class="upload">
+								<input id="file" name="file" type="file" required="">
+							</div>
+						</div>
+						<div class="button-box">
+							<input id="submit" name="submit" type="submit" value="開始上傳" class="btn btn-primary">
+						</div>
+					</form>
 				</div>
-				<input id="submit" name="submit" type="submit" value="開始上傳" class="btn btn-default">
-			</form>
 			</div>
-		</div>
-			
+
 		</div>
 	</body>
 </html>

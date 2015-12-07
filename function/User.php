@@ -1,4 +1,4 @@
-<?
+<?php
 class User
 {
 	//Mysql connection
@@ -60,9 +60,9 @@ class User
 		$this->Rows=$this->db->num_rows($this->Result);
 	}
 	
-	public function UpdatePassword($password)
+	public function UpdatePassword($account,$password)
 	{
-		$sql = 'UPDATE `user` SET `pw`=\''.$password.'\';';
+		$sql = 'UPDATE `user` SET `pw`=\''.$password.'\' WHERE `account`=\''.$account.'\' ';
 		$this->db->query($sql);
 	}
 	
@@ -78,5 +78,7 @@ class User
 		}
 		return false;
 	}
+    
+    
 }
 ?>

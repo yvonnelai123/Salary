@@ -1,4 +1,4 @@
-<?
+<?php
 class Mysql
 {
 	public function __construct()
