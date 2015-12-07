@@ -95,11 +95,13 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST')
 					<div class="main-login-form">
 						<div class="login-group">
 							<div class="form-group">
-								<input type="text" class="form-control" name="account" placeholder="account" required="" value="N123456789">
+								<input type="text" class="form-control" name="account" placeholder="account" required="" value="admin">
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" name="password" placeholder="password" required="" value="123">
+								<input type="password" class="form-control" name="password" placeholder="password" required="" value="admin">
+
 							</div>
+                            
 							<div class="form-group login-group-checkbox">
 								<input type="radio" class="" name="role" value="employee" id="employee" checked="">
 								<label for="employee">

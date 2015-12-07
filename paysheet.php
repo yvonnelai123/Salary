@@ -7,12 +7,27 @@ if($_SESSION['Account'] == null){
 }
 elseif($_SESSION['Account'] == 'admin')
 {
-	include('function/Mysql.php');
-	include('function/User.php');
 	if($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
+		if($_FILES['file']['error'] > 0)
+		{
+			echo '<script>alert("檔案上傳失敗！");</script>';
+		}
+		elseif(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xlsx')
+		{
+			echo '<script>alert("檔案格式錯誤！");</script>';
+		}
+		else
+		{
+			$fileName = $_POST['account'].'-'.$_POST['date'].'.'.pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
+			move_uploaded_file($_FILES['file']['tmp_name'], 'file/'.$fileName);//複製檔案
 
-
+			include('function/Mysql.php');
+			include('function/Paysheet.php');
+			$Paysheets= new Paysheet(new Mysql());
+			$Paysheets->Insert($_POST['account'], $fileName);
+			echo '<script>alert("Success!");</script>';
+		}
 	}
 }
 else
@@ -48,6 +63,7 @@ else
 	</head>
 	<body>
 		<?php include("header.php"); ?>
+<<<<<<< HEAD
 		<div class="contain">
 			<div class="contain panel panel-default">
 				<div class="panel-heading">
@@ -62,31 +78,20 @@ else
 								<option value="N123456789">
 									N123456789
 								</option>
+=======
+>>>>>>> origin/master
 
-							</select>
-							</div>
-						</div>
-						<div class="form-box">
-							<div class="upload">Year & Month :</div>
-							<div class="date-box">
-							<input type="month" name="date" class="form-control" required=""/>
-							</div>
-						</div>
-						<div class="form-box">
-							<div class="upload">
-								上傳薪資表 :
-							</div>
-							<div class="upload">
-								<input id="file" name="file" type="file" required="">
-							</div>
-						</div>
-						<div class="button-box">
-							<input id="submit" name="submit" type="submit" value="開始上傳" class="btn btn-primary">
-						</div>
-					</form>
-				</div>
-			</div>
+		<div class="contain">
+			<?php
+			if($_SESSION['Account'] == 'admin')
+			{
+				include("uploadPaysheet.php");
+			}
+			else
+			{
 
+			}
+			?>
 		</div>
 	</body>
 </html>
