@@ -22,9 +22,16 @@ class Paysheet
 		$sql = 'INSERT INTO `pay_sheet` (`account`,`file_name`) VALUES (\''.$account.'\',\''.$fileName.'\');';
 		$this->db->query($sql);
 	}
+	public function GetByAccount($account)
+	{
+		$sql = 'SELECT * FROM  `pay_sheet` WHERE `account`=\''.$account.'\'';
+		$this->Result=$this->db->query($sql);
+		$this->Rows=$this->db->num_rows($this->Result);
+	}
+	
 	public function GetAll()
 	{
-		$sql = 'SELECT * FROM  `pay_sheet` ORDER BY   `account` DESC ';
+		$sql = 'SELECT * FROM  `pay_sheet` ORDER BY `account` DESC ';
 		$this->Result=$this->db->query($sql);
 		$this->Rows=$this->db->num_rows($this->Result);
 	}
