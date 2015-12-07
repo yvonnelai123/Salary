@@ -36,9 +36,12 @@ a:hover
 	float: left;
 	margin-right: 8px;
 }
-.dropdown{
+.dropdown-box{
 	width: 250px;
 	float: left;
+}
+.dropdown{
+	padding-right: 20px;
 }
 .button-box{
 	width: auto;

@@ -56,7 +56,7 @@ else
 					<form action="upload.php" enctype="multipart/form-data" method="post">
 						<div class="form-box">
 							<div class="upload">Employee Account :</div>
-							<div class="dropdown">
+							<div class="dropdown-box">
 							<select class="form-control" name="account">
 								<option value="N123456789">
 									N123456789
