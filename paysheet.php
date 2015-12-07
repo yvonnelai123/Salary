@@ -16,15 +16,17 @@ elseif($_SESSION['Account'] == 'admin'){
 		if($_FILES['file']['error'] > 0){
 			echo '<script>alert("檔案上傳失敗！");</script>';
 		}
-		elseif(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xlsx'){
+		elseif(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xlsx' && pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xls'){
 			echo '<script>alert("檔案格式錯誤！");</script>';
 		}
 		else
 		{
+			$list = explode("-", $_POST['date']);
+			$date = $list[0].$list[1];
 			$fileName = $_POST['account'].'-'.$_POST['date'].'.'.pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
 			move_uploaded_file($_FILES['file']['tmp_name'], 'file/'.$fileName);//複製檔案
 
-			$Paysheets->Insert($_POST['account'], $fileName);
+			$Paysheets->Insert($_POST['account'],$date, $fileName);
 			echo '<script>alert("Success!");</script>';
 		}
 	}

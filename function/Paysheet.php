@@ -17,14 +17,14 @@ class Paysheet
 		$this->db=$db;
 	}
 	
-	public function Insert($account,$fileName)
+	public function Insert($account, $date, $fileName)
 	{
-		$sql = 'INSERT INTO `pay_sheet` (`account`,`file_name`) VALUES (\''.$account.'\',\''.$fileName.'\');';
+		$sql = 'INSERT INTO `pay_sheet` (`account`, `date`, `file_name`) VALUES (\''.$account.'\',\''.$date.'\',\''.$fileName.'\');';
 		$this->db->query($sql);
 	}
 	public function GetByAccount($account)
 	{
-		$sql = 'SELECT * FROM  `pay_sheet` WHERE `account`=\''.$account.'\'';
+		$sql = 'SELECT * FROM  `pay_sheet` WHERE `account`=\''.$account.'\' ORDER BY `date` DESC ';
 		$this->Result=$this->db->query($sql);
 		$this->Rows=$this->db->num_rows($this->Result);
 	}

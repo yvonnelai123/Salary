@@ -34,7 +34,7 @@
 			'.$month[0].'
 			</td>
 			<td>
-			'.$fileName.'
+			<a href="file/'.$fileName.'">'.$fileName.'</a>
 			</td>
 			</tr>';
 		}
