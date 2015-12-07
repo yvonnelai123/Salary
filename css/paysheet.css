@@ -19,7 +19,7 @@ a:hover
 }
 .contain
 {
-	min-height: 300px;
+	min-height: 270px;
 	width: 460px;
 	overflow: auto;
 	margin: 0px auto;
@@ -28,7 +28,7 @@ a:hover
 }
 .form-box{
 	width: auto;
-	height:35px;
+	height:40px;
 	margin-bottom:25px;	
 }
 .upload{
@@ -40,12 +40,16 @@ a:hover
 	width: 250px;
 	float: left;
 }
+.date-box{
+	width: 250px;
+	float: left;
+}
 .dropdown{
 	padding-right: 20px;
 }
 .button-box{
 	width: auto;
 	height:35px;
-	margin-top: 80px;
+	margin-top: 50px;
 	margin-left:180px;	
 }
