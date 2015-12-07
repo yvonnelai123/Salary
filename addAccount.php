@@ -34,11 +34,23 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST')
     
     include('function/Mysql.php');
     include('function/User.php');
+    
+    $isRightForm=false;
     $acc=$_POST['account'];
-    $pw = substr($acc, -4);
-    $Users = new User(new Mysql());
-    $Users->Insert($acc,$pw);
-    echo "<script type='text/javascript'>alert('success');</script>";
+    //check account is in right form
+    $pattern = '[A-Z][12][0-9]{8}'; 
+    if (eregi($pattern, $acc)&&strlen($acc)==10){
+        $pw = substr($acc, -4);
+        $Users = new User(new Mysql());
+        $Users->Insert($acc,$pw);
+        echo "<script type='text/javascript'>alert('success');</script>";
+    }
+
+    else{
+        echo "<script type='text/javascript'>alert('The format of account is wrong!');</script>";
+    }
+
+    
 }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -65,7 +77,7 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST')
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/login.css" type="text/css">
-
+       
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -103,7 +115,7 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST')
 					<div class="main-login-form">
 						<div class="login-group">
 							<div class="form-group">
-								<input type="text" class="form-control" name="account" placeholder="account" required="">
+								<input type="text" id="form-control" name="account" placeholder="account" required="">
 							</div>
 							<div class="form-group">
 								<font color="red">
