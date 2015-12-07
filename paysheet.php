@@ -1,10 +1,10 @@
 <?php
-@session_start();
+session_start();
 $err = "";
 if($_GET['Action'] == "Logout"){
 	session_destroy();
 }
-elseif($_SERVER['REQUEST_METHOD'] == 'POST')
+else if($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 
 	if($_POST['role'] == 'employee')
@@ -46,6 +46,7 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST')
 
 	</head>
 	<body>
-	<? include("header.php"); ?>
+	<?php include("header.php"); ?>
+	
 	</body>
 </html>
