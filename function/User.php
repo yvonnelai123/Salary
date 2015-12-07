@@ -53,6 +53,7 @@ class User
 		$sql = 'INSERT INTO `user` (`account`,`pw`) VALUES (\''.$account.'\',\''.$password.'\');';
 		$this->db->query($sql);
 	}
+    
 	public function GetAll()
 	{
 		$sql = 'SELECT * FROM  `user` ORDER BY   `user_account` DESC ';

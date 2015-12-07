@@ -20,10 +20,18 @@ else if($_SERVER['REQUEST_METHOD'] == 'POST')
 		$err = "帳號或密碼錯誤!";
 	}
     */
-    include('function/Mysql.php');
-    include('function/User.php');
-    $Users = new User(new Mysql());
-    $Users->UpdatePassword($_SESSION['Account'], $_POST['password']);
+    if(isset($_POST['password'])&& isset( $_POST['confirm'])&& $_POST['password'] == $_POST['confirm']){
+        include('function/Mysql.php');
+        include('function/User.php');
+        $Users = new User(new Mysql());
+        $Users->UpdatePassword($_SESSION['Account'], $_POST['password']);  
+        echo "<script type='text/javascript'>alert('success');</script>";
+    }
+    else{
+        echo "<script type='text/javascript'>alert('confirming password fails');</script>";
+        
+    }
+    
     
 }
 ?>
@@ -50,7 +58,7 @@ else if($_SERVER['REQUEST_METHOD'] == 'POST')
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/paysheet.css" type="text/css">		
 		<link rel="stylesheet" href="css/login.css" type="text/css">
-        <link rel="stylesheet" href="css/setting.css" type="text/css">
+        
 		
 
 	</head>
@@ -79,19 +87,18 @@ else if($_SERVER['REQUEST_METHOD'] == 'POST')
 								<input type="password" class="form-control" placeholder="password" name="password"  required="" >
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" placeholder="password confirm" name="password_confirm"  required="" >
+								<input type="password" class="form-control" placeholder="confirm" name="confirm"  required="" >
 							</div>
 							<div class="form-group">
 								<font color="red">
-									<? echo $err;?>
+									<?php echo $err;?>
 								</font>
 							</div>
 						</div>
 
-						<!--<button type="submit" class="login-button">-->
-						    <button type="submit" class="btnset"> set
-							<!--<i class="fa fa-chevron-right">
-							</i>-->
+						<button type="submit" class="login-button">
+							<i class="fa fa-chevron-right">
+							</i>
 						</button>
 					</div>
 					

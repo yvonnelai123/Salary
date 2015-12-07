@@ -43,10 +43,11 @@ else
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/paysheet.css" type="text/css">
+		
 
 	</head>
 	<body>
-		<? include("header.php"); ?>
+		<?php include("header.php"); ?>
 		<div class="contain">
 			<div class="contain panel panel-default">
 				<div class="panel-heading">
