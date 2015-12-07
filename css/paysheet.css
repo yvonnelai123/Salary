@@ -5,7 +5,7 @@ body
 	margin-left: 0px;
 	width: 100%;
 	background-color: #fdfdfd;
-
+	
 }
 a
 {
@@ -20,8 +20,29 @@ a:hover
 .contain
 {
 	min-height: 300px;
-	width: 300px;
+	width: 460px;
 	overflow: auto;
 	margin: 0px auto;
 	margin-top: 50px;
+	font-size: 16px;
+}
+.form-box{
+	width: auto;
+	height:35px;
+	margin-bottom:25px;	
+}
+.upload{
+	width: auto;
+	float: left;
+	margin-right: 8px;
+}
+.dropdown{
+	width: 250px;
+	float: left;
+}
+.button-box{
+	width: auto;
+	height:35px;
+	margin-top: 80px;
+	margin-left:180px;	
 }

@@ -6,13 +6,23 @@ if($_GET['Action'] == "Logout"){
 }
 elseif($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-
 	if($_POST['role'] == 'employee')
 	{
 		include('function/Mysql.php');
 		include('function/User.php');
 		$Users = new User(new Mysql());
 		if($Users->Login($_POST['account'], $_POST['password']))
+		{
+			$_SESSION['Account'] = $_POST['account'];
+			header("Location:paysheet.php");
+			die();
+		}
+		else
+		$err = "帳號或密碼錯誤!";
+	}
+	elseif($_POST['role'] == 'admin')
+	{
+		if($_POST['account'] == 'admin' && $_POST['password'] == 'admin')
 		{
 			$_SESSION['Account'] = $_POST['account'];
 			header("Location:paysheet.php");
