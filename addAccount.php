@@ -34,8 +34,10 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST')
     
     include('function/Mysql.php');
     include('function/User.php');
+    $acc=$_POST['account'];
+    $pw = substr($acc, -4);
     $Users = new User(new Mysql());
-    $Users->Insert($_POST['account'],$_POST['password']);
+    $Users->Insert($acc,$pw);
     echo "<script type='text/javascript'>alert('success');</script>";
 }
 ?>
@@ -102,9 +104,6 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST')
 						<div class="login-group">
 							<div class="form-group">
 								<input type="text" class="form-control" name="account" placeholder="account" required="">
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" name="password" placeholder="password" required="">
 							</div>
 							<div class="form-group">
 								<font color="red">
