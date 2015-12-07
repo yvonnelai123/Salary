@@ -32,9 +32,15 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li>
-					<a href="setting.php">
-						Setting
-					</a>
+				    <?php
+                        if($_SESSION['Account']=='admin'){
+                            echo "<a href=addAccount.php>add an account</a>";
+                        }
+                        else{
+                            echo "<a href=setting.php>Setting</a>";
+                        }
+					
+                    ?>
 				</li>
 				<li role="separator" class="divider">
 				</li>
