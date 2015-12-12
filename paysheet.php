@@ -4,22 +4,21 @@ $err       = "";
 
 include('function/Mysql.php');
 include('function/Paysheet.php');
-$Paysheets = new Paysheet(new Mysql());
-
-if($_SESSION['Account'] == null){
+include('function/User.php');
+$db        = new Mysql();
+$Paysheets = new Paysheet($db);
+$Users     = new User($db);
+if($_SESSION['Account'] == null)
+{
 	header("Location:login.php");
 	die();
 }
-elseif($_SESSION['Account'] == 'admin')
-{
-	if($_SERVER['REQUEST_METHOD'] == 'POST')
-	{
-		if($_FILES['file']['error'] > 0)
-		{
+elseif($_SESSION['Account'] == 'admin'){
+	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+		if($_FILES['file']['error'] > 0){
 			echo '<script>alert("檔案上傳失敗！");</script>';
 		}
-		elseif(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xlsx' && pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xls')
-		{
+		elseif(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xlsx' && pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xls'){
 			echo '<script>alert("檔案格式錯誤！");</script>';
 		}
 		else
@@ -99,8 +98,7 @@ else
 		<?php include("header.php"); ?>
 		<div class="contain">
 			<?php
-			if($_SESSION['Account'] == 'admin')
-			{
+			if($_SESSION['Account'] == 'admin'){
 				include("uploadPaysheet.php");
 			}
 			else
