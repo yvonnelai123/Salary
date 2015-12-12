@@ -80,6 +80,17 @@ class User
     {
         $sql='DELETE FROM `user` WHERE  `account`=\''.$account.'\'';
         $this->db->query($sql);     
+        
+        $sql2='DELETE FROM `pay_sheet` WHERE  `account`=\''.$account.'\'';
+        $this->db->query($sql2); 
+    }
+    public function UpdateAccount($account)
+    {
+        $sql = 'UPDATE `user` SET `account`=\''.$account.'\' WHERE `account`=\''.$account.'\' ';
+		$this->db->query($sql); 
+        
+        $sql2= 'UPDATE `pay_sheet` SET `account`=\''.$account.'\' WHERE `account`=\''.$account.'\' ';
+        $this->db->query($sql2); 
     }
 	public function HasNext()
 	{

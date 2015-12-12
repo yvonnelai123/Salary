@@ -10,32 +10,6 @@ if($_GET['Action'] == "Logout")
 	session_destroy();
 }
 elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
-	/*if($_POST['role'] == 'employee')
-	{
-	include('function/Mysql.php');
-	include('function/User.php');
-	$Users = new User(new Mysql());
-	if($Users->Login($_POST['account'], $_POST['password']))
-	{
-	$_SESSION['Account'] = $_POST['account'];
-	header("Location:paysheet.php");
-	die();
-	}
-	else
-	$err = "帳號或密碼錯誤!";
-	}
-	elseif($_POST['role'] == 'admin')
-	{
-	if($_POST['account'] == 'admin' && $_POST['password'] == 'admin')
-	{
-	$_SESSION['Account'] = $_POST['account'];
-	header("Location:paysheet.php");
-	die();
-	}
-	else
-	$err = "帳號或密碼錯誤!";
-	}*/
-   
       //新增帳號
     if(isset($_POST['newAccount'])){
         $isRightForm = false;
@@ -60,6 +34,19 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
         $showSearch=true;
     }
 
+}
+else if($_SERVER['REQUEST_METHOD'] == 'GET'&&isset($_GET['action'])&&isset($_GET['account'])){
+    $act=$_GET['action'];
+    $acc=$_GET['account'];
+    //edit
+    if($act==1){
+        $Users->UpdateAccount($acc);
+    }
+    //delete
+    else{
+        $Users->DeleteAccount($acc);
+         echo "<script type='text/javascript'>alert('success');</script>";
+    }
 }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -154,13 +141,24 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
                         $row=0;
 						while($Users->HasNext())
 				        {
-							 echo '<tr>
-							 <td>'.$Users->UserAccount.'</td>
+							$acc= $Users->UserAccount;
+                            echo '<tr>
+							 <td>'.$acc.'</td>
 							 <td>
-							 <a href="emEdit.php">修改</a>
+							 <a href="manageEmploy.php" onclick=edit()>修改</a>
+                             <script>
+                                function edit() {
+                                    var acc=<?php echo $acc ?>
+                                    var person = prompt("Please enter new account",acc);
+    
+                                if (person != null) {
+                                    location.href = "manageEmploy.php?action=2&account="+person;          
+                                }
+                            }
+                            </script>
 							 </td>
 							 <td>
-							 <a href="emEdit.php">刪除</a>
+							 <a href=manageEmploy.php?action=2&account=' . $acc .'>刪除</a>
 							 </td>
 							 </tr>';
                             $row++;
