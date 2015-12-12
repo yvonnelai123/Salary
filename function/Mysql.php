@@ -7,9 +7,9 @@ class Mysql
 	}
 	public function connect()
 	{	
-	   	$DB_HOST="140.127.74.161";
+	   	$DB_HOST="127.0.0.1";
 		$DB_LOGIN="root";
-		$DB_PASSWORD="970314";
+		$DB_PASSWORD="test";
 		$DB_NAME="salary";
 		if(!@$conn=mysql_connect($DB_HOST,$DB_LOGIN,$DB_PASSWORD))
 		{
