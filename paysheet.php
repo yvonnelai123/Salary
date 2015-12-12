@@ -66,6 +66,7 @@ else
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/paysheet.css" type="text/css">
+		<link rel="stylesheet" href="css/footer.css" type="text/css">
 		<script>
 			$(function()
 				{
@@ -110,5 +111,6 @@ else
 			}
 			?>
 		</div>
+		<?php include("footer.php"); ?>
 	</body>
 </html>

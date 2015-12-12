@@ -84,6 +84,7 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/paysheet.css" type="text/css">
+		<link rel="stylesheet" href="css/footer.css" type="text/css">
 
 	</head>
 	<body>
@@ -127,13 +128,13 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
 				</div><!-- /.row -->
                 </form>
 				<h2>
-					Paysheet
+					Employee
 				</h2>
 				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th>
-								Employee
+								Employee ID
 							</th>
 							<th>
 								Modify
@@ -183,5 +184,6 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
                     ?>
 			</div>
 		</div>
+		<?php include("footer.php"); ?>
 	</body>
 </html>
