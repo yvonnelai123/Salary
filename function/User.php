@@ -57,7 +57,7 @@ class User
 	public function GetAll()
 	{
 
-		$sql = 'SELECT * FROM  `user` ORDER BY `account` DESC ';
+		$sql = 'SELECT * FROM  `user` ORDER BY `account` ASC ';
 
 		$this->Result=$this->db->query($sql);
 		$this->Rows=$this->db->num_rows($this->Result);
