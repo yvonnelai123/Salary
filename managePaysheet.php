@@ -98,7 +98,7 @@
 			?>
 		</tbody>
 	</table>
-	<div id="dialog" title="Basic dialog">
+	<div id="dialog">
 		<form action="paysheet.php" enctype="multipart/form-data" method="post">
 			<div class="form-box">
 				<div class="upload">

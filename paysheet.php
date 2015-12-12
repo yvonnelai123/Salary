@@ -71,12 +71,18 @@ else
 				{
 					$("#dialog").dialog(
 						{
-							autoOpen: false,
-							width: 400,
-							height: 350,
-							modal: true,
-							draggable: true,
-							resizable: false,
+							title: '新增薪資表',
+ 							autoOpen: false,
+-							bgiframe: true,
+ 							width: 400,
+ 							height: 350,
+ 							modal: true,
+ 							draggable: true,
+ 							resizable: false,
+-							overlay:
+-							{
+-								opacity: 0.7, background: "#FF8899"
+-							}
 						});
 					$( "#btn" ).click(function()
 						{
