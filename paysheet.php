@@ -99,7 +99,7 @@ else
 		<div class="contain">
 			<?php
 			if($_SESSION['Account'] == 'admin'){
-				include("uploadPaysheet.php");
+				include("managePaysheet.php");
 			}
 			else
 			{

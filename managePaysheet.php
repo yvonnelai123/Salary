@@ -5,7 +5,7 @@
 		</a>
 	</li>
 	<li role="presentation">
-		<a href="addaccount.php">
+		<a href="manageEmploy.php">
 			Employee
 		</a>
 	</li>
@@ -13,11 +13,7 @@
 
 <div class="contain-box">
 	<div class="row">
-		<div class="col-lg-4">
-			<div class="input-group">
-				<input type="month" class="form-control">
-			</div>
-		</div>
+		
 		<div class="col-lg-6">
 			<div class="input-group">
 
