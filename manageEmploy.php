@@ -124,9 +124,6 @@ else if($_SERVER['REQUEST_METHOD'] == 'GET'&&isset($_GET['action'])&&isset($_GET
 								Employee ID
 							</th>
 							<th>
-								Modify
-							</th>
-							<th>
 								Delete
 							</th>
 						</tr>
@@ -146,20 +143,7 @@ else if($_SERVER['REQUEST_METHOD'] == 'GET'&&isset($_GET['action'])&&isset($_GET
                             echo '<tr>
 							 <td>'.$acc.'</td>
 							 <td>
-							 <a href="manageEmploy.php" onclick=edit() class="btn btn-default glyphicon glyphicon-pencil">修改</a>
-                             <script>
-                                function edit() {
-                                    var acc=<?php echo $acc ?>
-                                    var person = prompt("Please enter new account",acc);
-    
-                                if (person != null) {
-                                    location.href = "manageEmploy.php?action=2&account="+person;          
-                                }
-                            }
-                            </script>
-							 </td>
-							 <td>
-							 <a href=manageEmploy.php?action=2&account=' . $acc .'  class="btn btn-default glyphicon glyphicon-trash">刪除</a>
+							 <a href=manageEmploy.php?action=2&account=' . $acc .'  class="btn btn-default glyphicon glyphicon-trash"></a>
 							 </td>
 							 </tr>';
                             $row++;
