@@ -158,10 +158,10 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
 							 echo '<tr>
 							 <td>'.$Users->UserAccount.'</td>
 							 <td>
-							 <a href="emEdit.php">修改</a>
+							 <a href="emEdit.php" class="btn btn-default glyphicon glyphicon-pencil"></a>
 							 </td>
 							 <td>
-							 <a href="emEdit.php">刪除</a>
+							 <a href="emEdit.php" class="btn btn-default glyphicon glyphicon-trash"></a>
 							 </td>
 							 </tr>';
                             $row++;
