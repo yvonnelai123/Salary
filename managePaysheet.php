@@ -12,24 +12,29 @@
 </ul>
 
 <div class="contain-box">
-	<div class="row">
-		
-		<div class="col-lg-6">
-			<div class="input-group">
+	<form action="paysheet.php" method="GET">
+		<div class="row">
 
-				<input type="text" class="form-control" placeholder="Search for...">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button">
-						Search!
-					</button>
-				</span>
-			</div><!-- /input-group -->
-		</div><!-- /.col-lg-6 -->
-		<button id="btn" class="btn btn-primary">
-			新增薪資表
-		</button>
-	</div><!-- /.row -->
+			<div class="col-lg-4">
+				<input type="month" class="form-control" name="date">
+			</div><!-- /.col-lg-6 -->
+			<div class="col-lg-6">
+				<div class="input-group">
 
+					<input type="text" name="acc" class="form-control" placeholder="Search for...">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="submit">
+							Search!
+						</button>
+					</span>
+				</div><!-- /input-group -->
+			</div><!-- /.col-lg-6 -->
+
+			<button id="btn" type="button" class="btn btn-primary">
+				新增薪資表
+			</button>
+		</div><!-- /.row -->
+	</form>
 	<h2>
 		Paysheet
 	</h2>
@@ -53,16 +58,30 @@
 		<tbody>
 			<?php
 
-			$Users->GetAll();
-			while($Users->HasNext()){
-				$Paysheets->GetByAccount($Users->UserAccount);
+			if($_SERVER['REQUEST_METHOD'] == 'GET'){
+				
+				$list = explode("-", $_GET['date']);
+				$date = $list[0].$list[1];
+				$Paysheets->SearchByAccount($_GET['acc'], $date);
+				outputTable($Paysheets);
+			}
+			else
+			{
+				$Users->GetAll();
+				while($Users->HasNext()){
+					$Paysheets->GetByAccount($Users->UserAccount);
+					outputTable($Paysheets);
+				}
+			}
+			function outputTable($Paysheets)
+			{
 				while($Paysheets->HasNext())
 				{
 					$fileName = $Paysheets->FileName;
 					$year     = explode("-", $fileName);
 					$month    = explode(".", $year[2]);
 					echo '<tr>
-					<td>'.$Users->UserAccount.'</td>
+					<td>'.$Paysheets->Account.'</td>
 					<td>
 					'.$year[1].'
 					</td>
