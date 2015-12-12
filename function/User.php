@@ -56,15 +56,20 @@ class User
     
 	public function GetAll()
 	{
-<<<<<<< HEAD
+
 		$sql = 'SELECT * FROM  `user` ORDER BY `account` DESC ';
-=======
-		$sql = 'SELECT * FROM  `user` ORDER BY   `account` DESC ';
->>>>>>> origin/master
+
 		$this->Result=$this->db->query($sql);
 		$this->Rows=$this->db->num_rows($this->Result);
 	}
 	
+    public function SearchUser($account)
+	{
+		$sql = 'SELECT * FROM  `user` WHERE `account`=\''.$account.'\' ORDER BY `account` DESC  ';
+		$this->Result=$this->db->query($sql);
+		$this->Rows=$this->db->num_rows($this->Result);
+	}
+    
 	public function UpdatePassword($account,$password)
 	{
 		$sql = 'UPDATE `user` SET `pw`=\''.$password.'\' WHERE `account`=\''.$account.'\' ';

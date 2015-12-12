@@ -1,6 +1,7 @@
 <?php
 @session_start();
 $err = "";
+$showSearch=false;
 include('function/Mysql.php');
 	include('function/User.php');
 	$Users = new User(new Mysql());
@@ -34,22 +35,30 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
 	else
 	$err = "帳號或密碼錯誤!";
 	}*/
-	$isRightForm = false;
-	$acc     = $_POST['account'];
-	//check account is in right form
-	$pattern = '[A-Z][12][0-9]{8}';
-	if(eregi($pattern, $acc) && strlen($acc) == 10)
-	{
-		$pw    = substr($acc, - 4);
-		$Users->Insert($acc,$pw);
-		echo "<script type='text/javascript'>alert('success');</script>";
-	}
+   
+      //新增帳號
+    if(isset($_POST['newAccount'])){
+        $isRightForm = false;
+	   $acc = $_POST['newAccount'];
+	   //check account is in right form
+	   $pattern = '[A-Z][12][0-9]{8}';
+	   if(eregi($pattern, $acc) && strlen($acc) == 10)
+	   {
+		  $pw    = substr($acc, - 4);
+		  $Users->Insert($acc,$pw);
+		  echo "<script type='text/javascript'>alert('success');</script>";
+	   }
 
-	else
-	{
-		echo "<script type='text/javascript'>alert('The format of account is wrong!');</script>";
-	}
-
+	   else
+	   {
+		  echo "<script type='text/javascript'>alert('The format of account is wrong!');</script>";
+	   }
+        
+    }
+    //搜尋帳號
+    else if(isset($_POST['searchWord'])){
+        $showSearch=true;
+    }
 
 }
 ?>
@@ -94,24 +103,29 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
 			</ul>
 
 			<div class="contain-box">
+			    <form method="POST" action="manageEmploy.php">
 				<div class="row">
 					
-					<div class="col-lg-6">
+					<div class="col-lg-5">
 						<div class="input-group">
-
-							<input type="text" class="form-control" placeholder="Search for...">
+                            
+							<input type="text" name="searchWord" class="form-control" placeholder="Search for...">
 							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">
+								<button class="btn btn-default">
 									Search!
-								</button>
+                                </button>
 							</span>
+                            
 						</div><!-- /input-group -->
 					</div><!-- /.col-lg-6 -->
-					<button id="btn" class="btn btn-primary">
-						新增員工
-					</button>
+					<div class="col-lg-5">
+					    <input type="text" name="newAccount" class="form-control" placeholder="account">
+                    </div>
+                    <button id="btn" class="btn btn-primary">
+						    新增員工
+					    </button>
 				</div><!-- /.row -->
-
+                </form>
 				<h2>
 					Paysheet
 				</h2>
@@ -131,23 +145,42 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
 					</thead>
 					<tbody>
 						<?php
-						$Users->GetAll();
+                        if($showSearch){
+                            $Users->SearchUser($_POST['searchWord']);
+                        }
+                        else{
+                            $Users->GetAll();
+                        }
+                        $row=0;
 						while($Users->HasNext())
-						{
-							echo '<tr>
-							<td>'.$Users->UserAccount.'</td>
-							<td>
-							<a href="#">修改</a>
-							</td>
-							<td>
-							<a href="#"刪除></a>
-							</td>
-							</tr>';
-						}
+				        {
+							 echo '<tr>
+							 <td>'.$Users->UserAccount.'</td>
+							 <td>
+							 <a href="emEdit.php">修改</a>
+							 </td>
+							 <td>
+							 <a href="emEdit.php">刪除</a>
+							 </td>
+							 </tr>';
+                            $row++;
+				        }
+                        
 						?>
 					</tbody>
 				</table>
-
+                    <?php 
+                        //no information
+                        if($row==0){
+                            echo "<script type='text/javascript'>alert('Cannot find this account');</script>";
+                        }
+                        if($showSearch){
+                            echo"<button id=btn class=btn btn-primary onclick=location.href='manageEmploy.php'>
+						    back
+					       </button>";
+                        }
+                        
+                    ?>
 			</div>
 		</div>
 	</body>
