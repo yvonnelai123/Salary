@@ -53,6 +53,9 @@ else
 		<!-- jQuery -->
 		<script src="js/jquery.js">
 		</script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js">
+		</script>
 
 		<!-- Bootstrap Core JavaScript -->
 		<script src="js/bootstrap.min.js">
@@ -62,7 +65,34 @@ else
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/paysheet.css" type="text/css">
-
+		<script>
+			$(function()
+				{
+					$("#dialog").dialog(
+						{
+							title: '新增薪資表',
+							autoOpen: false,
+							bgiframe: true,
+							width: 400,
+							height: 350,
+							modal: true,
+							draggable: true,
+							resizable: false,
+							overlay:
+							{
+								opacity: 0.7, background: "#FF8899"
+							}
+						});
+					$( "#btn" ).click(function()
+						{
+							$( "#dialog" ).dialog( "open" );
+						});
+					$( "#cancel" ).click(function()
+						{
+							$( "#dialog" ).dialog( "close" );
+						});
+				});
+		</script>
 
 	</head>
 	<body>

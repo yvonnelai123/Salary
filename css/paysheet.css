@@ -10,11 +10,21 @@ body
 .contain
 {
 	min-height: 270px;
-	width: 460px;
+	width: 800px;
 	overflow: auto;
 	margin: 0px auto;
-	margin-top: 50px;
+	margin-top: 70px;
 	font-size: 16px;
+}
+.contain-box{
+	width: 800px;
+	font-size: 16px;
+	border: 1px solid #ddd;
+	border-top: 0px;
+	padding: 50px 100px 50px 100px;
+}
+.upload-box{
+	width: 600px;
 }
 .form-box{
 	width: auto;
@@ -41,5 +51,5 @@ body
 	width: auto;
 	height:35px;
 	margin-top: 50px;
-	margin-left:180px;	
+	margin-left:100px;	
 }
