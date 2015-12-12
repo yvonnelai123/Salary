@@ -65,7 +65,7 @@ class User
 	
     public function SearchUser($account)
 	{
-		$sql = 'SELECT * FROM  `user` WHERE `account`=\''.$account.'\' ORDER BY `account` DESC  ';
+		$sql = 'SELECT * FROM  `user` WHERE `account`  LIKE \'%'.$account.'%\' ORDER BY `account` DESC  ';
 		$this->Result=$this->db->query($sql);
 		$this->Rows=$this->db->num_rows($this->Result);
 	}

@@ -30,7 +30,8 @@ elseif($_SERVER['REQUEST_METHOD'] == 'POST'){
         
     }
     //搜尋帳號
-    else if(isset($_POST['searchWord'])){
+    else{
+        //if(isset($_POST['searchWord']))
         $showSearch=true;
     }
 
@@ -91,9 +92,9 @@ else if($_SERVER['REQUEST_METHOD'] == 'GET'&&isset($_GET['action'])&&isset($_GET
 			</ul>
 
 			<div class="contain-box">
-			    <form method="POST" action="manageEmploy.php">
+			   
 				<div class="row">
-					
+					 <form method="POST" action="manageEmploy.php" style="margin:0px">
 					<div class="col-lg-5">
 						<div class="input-group">
                             
@@ -106,14 +107,17 @@ else if($_SERVER['REQUEST_METHOD'] == 'GET'&&isset($_GET['action'])&&isset($_GET
                             
 						</div><!-- /input-group -->
 					</div><!-- /.col-lg-6 -->
+                    </form>
+                    <form method="POST" action="manageEmploy.php" style="margin:0px">
 					<div class="col-lg-5">
 					    <input type="text" name="newAccount" class="form-control" placeholder="account">
                     </div>
-                    <button id="btn" class="btn btn-primary">
+                        <button id="btn" class="btn btn-primary">
 						    新增員工
 					    </button>
+                    </form>
 				</div><!-- /.row -->
-                </form>
+                
 				<h2>
 					Employee
 				</h2>
