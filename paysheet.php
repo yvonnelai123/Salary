@@ -19,7 +19,7 @@ elseif($_SESSION['Account'] == 'admin')
 		{
 			echo '<script>alert("檔案上傳失敗！");</script>';
 		}
-		elseif(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xlsx' && pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xls')
+		elseif(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xlsx' && pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xls' && pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION) != 'xlsb')
 		{
 			echo '<script>alert("檔案格式錯誤！");</script>';
 		}
@@ -66,6 +66,7 @@ else
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/paysheet.css" type="text/css">
+		<link rel="stylesheet" href="css/footer.css" type="text/css">
 		<script>
 			$(function()
 				{
@@ -110,5 +111,6 @@ else
 			}
 			?>
 		</div>
+		<?php include("footer.php"); ?>
 	</body>
 </html>

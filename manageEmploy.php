@@ -71,6 +71,7 @@ else if($_SERVER['REQUEST_METHOD'] == 'GET'&&isset($_GET['action'])&&isset($_GET
 
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/paysheet.css" type="text/css">
+		<link rel="stylesheet" href="css/footer.css" type="text/css">
 
 	</head>
 	<body>
@@ -114,13 +115,13 @@ else if($_SERVER['REQUEST_METHOD'] == 'GET'&&isset($_GET['action'])&&isset($_GET
 				</div><!-- /.row -->
                 </form>
 				<h2>
-					Paysheet
+					Employee
 				</h2>
 				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th>
-								Employee
+								Employee ID
 							</th>
 							<th>
 								Modify
@@ -145,7 +146,7 @@ else if($_SERVER['REQUEST_METHOD'] == 'GET'&&isset($_GET['action'])&&isset($_GET
                             echo '<tr>
 							 <td>'.$acc.'</td>
 							 <td>
-							 <a href="manageEmploy.php" onclick=edit()>修改</a>
+							 <a href="manageEmploy.php" onclick=edit() class="btn btn-default glyphicon glyphicon-pencil">修改</a>
                              <script>
                                 function edit() {
                                     var acc=<?php echo $acc ?>
@@ -158,7 +159,7 @@ else if($_SERVER['REQUEST_METHOD'] == 'GET'&&isset($_GET['action'])&&isset($_GET
                             </script>
 							 </td>
 							 <td>
-							 <a href=manageEmploy.php?action=2&account=' . $acc .'>刪除</a>
+							 <a href=manageEmploy.php?action=2&account=' . $acc .'  class="btn btn-default glyphicon glyphicon-trash">刪除</a>
 							 </td>
 							 </tr>';
                             $row++;
@@ -181,5 +182,6 @@ else if($_SERVER['REQUEST_METHOD'] == 'GET'&&isset($_GET['action'])&&isset($_GET
                     ?>
 			</div>
 		</div>
+		<?php include("footer.php"); ?>
 	</body>
 </html>

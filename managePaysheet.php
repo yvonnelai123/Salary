@@ -58,8 +58,9 @@
 		<tbody>
 			<?php
 
-			if($_SERVER['REQUEST_METHOD'] == 'GET'){
-				
+			if($_SERVER['REQUEST_METHOD'] == 'GET')
+			{
+
 				$list = explode("-", $_GET['date']);
 				$date = $list[0].$list[1];
 				$Paysheets->SearchByAccount($_GET['acc'], $date);
@@ -68,15 +69,15 @@
 			else
 			{
 				$Users->GetAll();
-				while($Users->HasNext()){
+				while($Users->HasNext())
+				{
 					$Paysheets->GetByAccount($Users->UserAccount);
 					outputTable($Paysheets);
 				}
 			}
 			function outputTable($Paysheets)
 			{
-				while($Paysheets->HasNext())
-				{
+				while($Paysheets->HasNext()){
 					$fileName = $Paysheets->FileName;
 					$year     = explode("-", $fileName);
 					$month    = explode(".", $year[2]);
@@ -97,7 +98,6 @@
 			?>
 		</tbody>
 	</table>
-
 	<div id="dialog">
 		<form action="paysheet.php" enctype="multipart/form-data" method="post">
 			<div class="form-box">
@@ -106,10 +106,15 @@
 				</div>
 				<div class="dropdown-box">
 					<select class="form-control" name="account" required="">
-						<option value="N123456789">
-							N123456789
-						</option>
-
+						<?php
+						$Users->GetAll();
+						while($Users->HasNext())
+						{
+							echo '<option value="'.$Users->UserAccount.'">
+							'.$Users->UserAccount.'
+							</option>';
+						}
+						?>
 					</select>
 				</div>
 			</div>

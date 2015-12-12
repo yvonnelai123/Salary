@@ -9,7 +9,7 @@ body
 }
 .contain
 {
-	min-height: 270px;
+	min-height: 500px;
 	width: 800px;
 	overflow: auto;
 	margin: 0px auto;
