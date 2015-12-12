@@ -25,7 +25,7 @@ else if($_SERVER['REQUEST_METHOD'] == 'POST')
         include('function/User.php');
         $Users = new User(new Mysql());
         $Users->UpdatePassword($_SESSION['Account'], $_POST['password']);  
-        echo "<script type='text/javascript'>alert('success');</script>";
+        header('Location: paysheet.php');
     }
     else{
         echo "<script type='text/javascript'>alert('confirming password fails');</script>";
