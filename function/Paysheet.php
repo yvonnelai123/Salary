@@ -42,6 +42,13 @@ class Paysheet
 		$this->db->query($sql);
 	}
 	
+	public function SearchByAccount($account, $date)
+	{
+		$sql = 'SELECT * FROM  `pay_sheet` WHERE `account`  LIKE \'%'.$account.'%\' and `date`  LIKE \'%'.$date.'%\'  ORDER BY `date` DESC';
+		$this->Result=$this->db->query($sql);
+		$this->Rows=$this->db->num_rows($this->Result);
+	}
+	
 	public function HasNext()
 	{
 		if($this->Rows>0)
