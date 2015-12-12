@@ -56,7 +56,11 @@ class User
     
 	public function GetAll()
 	{
+<<<<<<< HEAD
+		$sql = 'SELECT * FROM  `user` ORDER BY `account` DESC ';
+=======
 		$sql = 'SELECT * FROM  `user` ORDER BY   `account` DESC ';
+>>>>>>> origin/master
 		$this->Result=$this->db->query($sql);
 		$this->Rows=$this->db->num_rows($this->Result);
 	}
@@ -67,6 +71,11 @@ class User
 		$this->db->query($sql);
 	}
 	
+    public function DeleteAccount($account)
+    {
+        $sql='DELETE FROM `user` WHERE  `account`=\''.$account.'\'';
+        $this->db->query($sql);     
+    }
 	public function HasNext()
 	{
 		if($this->Rows>0)
